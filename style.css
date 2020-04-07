@@ -2,13 +2,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
 }
 
 /* ************************************************************************** */
 /* ***************************** ROBA GENERALE ****************************** */
 /* ************************************************************************** */
 body {
-  font-family: 'Lato', sans-serif;
+
   /* Gradiente dall'alto verso il basso */
   background-image: linear-gradient(to bottom, #009688 15vh, #dddbd1 15vh, #d2dbdc 100%);
 }
@@ -141,6 +142,9 @@ main {
   color: #B6B9BB;
 }
 
+.barraRicerca input::placeholder {
+  color: rgba(0, 0, 0, 0.6);
+}
 /* ****    LISTA CONTATTI  ***** */
 .listaContatti{
   width: 100%;
@@ -328,6 +332,10 @@ PER INDICARE CHE UN CONTATTO è CLICCATO */
   font-size: 14px;
   font-weight: lighter;
   color: black;
+}
+
+.inputUtente input::placeholder {
+  color: rgba(0, 0, 0, 0.3);
 }
 
 .invia{

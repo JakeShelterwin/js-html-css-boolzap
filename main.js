@@ -16,8 +16,6 @@ $(document).ready(function(){
   focus: function(){
     //al focus, sostituisco l'icona del microfono con quella dell'aeroplanino
     $(".invia").html("<i class='fas fa-paper-plane'></i> ")
-    //svuoto il placeholder appena voglio scriverci
-    $(this).attr('placeholder', '')
   },
 
   //test per far riapparire l'icona del microfono quando tolgo il focus ma non funziiona
@@ -49,15 +47,13 @@ $(document).ready(function(){
   $(".colonnaContatti, .chatUser, .opzioni, .chatBoard, .emoj").on({
   //quando clicco sul bottone do a ogni cella il background corrispondende mostrando le posizioni
   click: function(){
-    $(".invia").html("<i class='fas fa-microphone'></i> ")
+    $(".invia").html("<i class='fas fa-microphone'></i> ");
   }
   });
 
   //questa funzione inserisce l'input dell'utente ottenuto sopra all'nterno della nuvoletta
   //di whatsapp con tutte le classi associate
   function compariBolla (){
-    // appena ho finito di scrivere, rimetto nel plceholder il testo che voglio
-    $(".inputUtente input").attr('placeholder', 'Scrivi un messaggio')
     //prendo dall'html il valore che l'utente ha inserito
     inputUtente=$(".inputUtente input").val();
     //SE l'input dell'utente non è vuoto
