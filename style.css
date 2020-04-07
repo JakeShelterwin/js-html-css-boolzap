@@ -73,24 +73,79 @@ main {
     float: left;
 }
 
+/* **** Rettangolo blu attiva notifiche ***** */
 .bannerStressante{
   display: flex;
   width: 100%;
   height: 80px;
   background: #8EDAFC;
+  text-align: center;
 }
 
+.bannerStressante i{
+  width: 50px;
+  height: 50px;
+  line-height: 51px;
+  margin-top: 15px;
+  margin-left: 20px;
+  background: #F2FBFF;
+  border-radius: 100%;
+  color: #8EDAFC;
+  font-size: 20px;
+}
+
+.punzecchiata{
+  width: calc(100% - 50px);
+  text-align: left;
+  margin: auto;
+  padding: 0 10px;
+}
+
+.punzecchiata p{
+  font-size: 16px;
+}
+.punzecchiata a{
+  color: #4F7485;
+  font-size: 13.5px;
+}
+
+/* ****    BARRA RICERCA ***** */
 .barraRicerca{
   width: 100%;
   height: 50px;
   background: #FAFAFA;
 }
 
+.barraRicerca label i{
+  float: left;
+  width: calc(15% - 7px); /*tolgo il margin*/
+  height: 36px;
+  margin: 7px 0 7px 7px;
+  border: 1px solid #F5F5F5;
+  border-right: 0;
+  background-color: white;
+  line-height: 36px;
+  text-align: center;
+  color: #B6B9BB;
+}
+
+.barraRicerca input{
+  float: left;
+  width: calc(85% - 7px); /*tolgo il margin*/
+  height: 36px;
+  margin: 7px 7px 7px 0;
+  padding: 0 10px;
+  border: 1px solid #F5F5F5;
+  border-left: 0;
+  border-radius: 0px 3px 3px 0;
+  color: #B6B9BB;
+}
+
+/* ****    LISTA CONTATTI  ***** */
 .listaContatti{
   width: 100%;
   /* 200 viene da -70px altezza userProfile, - 80px altezza bannerStressante, - 50px altezz barraRicerca */
   height: calc(100% - 200px);
-  /* height: 520px; */
   background: #fff;
   overflow-y: scroll;
 }
@@ -101,6 +156,59 @@ main {
   width: 100%;
   height: 80px;
   border-bottom: 1px solid #F5F5F5;
+}
+
+.contatto:hover{
+  background-color: #f4f5f5;
+}
+
+.logoContatto{
+  width: 60px;
+  height: 60px;
+  margin: auto 20px;
+  border-radius: 100%;
+  overflow: hidden; /* nasconde i bordi dell'immagine*/
+}
+
+.logoContatto img{
+  height: 100%;
+  width: 100%;
+}
+
+.infoContatto{
+  width: calc(100% - 100px);
+  height: 60px;
+  margin: auto 10px auto 0;
+  padding-top: 9px;
+}
+
+.nomeContatto{
+  float: left;
+  font-size: 17px;
+}
+
+.ultimoAccessoContatto{
+  float: right;
+  color: rgba(183, 186, 187, 0.65);
+  font-size: 12.11111px;
+  margin-top: 3px;
+}
+
+.ultimoMesChat{
+  float: left;
+  font-size: 13.333333px;
+  color: #B6B9BB;
+  margin-top: 5px;
+}
+
+/* QUESTA SARA LA CLASSE DA ASSEGNARE
+PER INDICARE CHE UN CONTATTO è CLICCATO */
+.cliccato{
+  background-color: #E9EBEB;
+  border-bottom-color: transparent;
+}
+.contatto.cliccato:hover{
+  background-color: #E9EBEB;
 }
 
 /* ***************************** COLONNA CHAT *************************** */
