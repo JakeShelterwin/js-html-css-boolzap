@@ -34,22 +34,43 @@ main {
   width: 80%;
   min-width: 900px;
   height: 95%;
-  z-index: 1;
 }
 
+/* ***************************** ENTRAMBE COLONNE *************************** */
 
+.userProfile, .chatUser {
+    width: 100%;
+    height: 70px;
+    background: #EAEAEA;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.userProfile img, .chatUser img{
+  width: 50px;
+  height: 50px;
+  margin: auto 0 auto 10px;
+  border-radius: 100%;
+}
+
+.opzioni{
+  display: flex;
+  height: 100%;
+  margin-right: 15px;
+}
+
+.opzioni i{
+  margin: auto 10px;
+  color: rgb(177, 177, 177);
+  font-size: 22px;
+}
 /* ***************************** COLONNA CONTATTI *************************** */
 .colonnaContatti {
     width: 35%;
     height: 100%;
     border-right: 1px solid #D6D6D6;
     float: left;
-}
-
-.userProfile {
-    width: 100%;
-    height: 70px;
-    background: #EAEAEA;
 }
 
 .bannerStressante{
@@ -89,12 +110,23 @@ main {
   float: left;
 }
 
-.chatUser {
-  width: 100%;
-  height: 70px;
-  background: #EAEAEA;
+/* ****    BARRA CON MITTENTE ***** */
+.datiMittente{
+  display: flex;
+  align-items: center;
 }
 
+.statoENome{
+  margin-left: 15px;
+  font-size: 16px;
+  font-weight: normal;
+}
+.statoENome span{
+  color: #6B7376;
+  font-size: 13.3px;
+}
+
+/* ****    CHAT ***** */
 .chatBoard{
   /*-70px è chatUser e il secondo -70 è la dimensione dell'input */
   height: calc(100% - 140px);
@@ -104,6 +136,7 @@ main {
   overflow-y: scroll;
 }
 
+/* ****   INPUT ***** */
 .inputChat{
   background-color: #F3EEEA;
   width: 100%;
