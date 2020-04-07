@@ -9,16 +9,19 @@
 /* ************************************************************************** */
 body {
   font-family: 'Lato', sans-serif;
-  display: flex;
-  height: 100vh;
-  width: 100%;
-  max-height: 100vh;
   /* Gradiente dall'alto verso il basso */
   background-image: linear-gradient(to bottom, #009688 15vh, #dddbd1 15vh, #d2dbdc 100%);
 }
 
+main {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  max-height: 100vh;
+}
+
 .clearfix{
-  display: table;
+  display: block;
   content: "";
   clear: both;
 }
@@ -27,17 +30,18 @@ body {
 /* ***************************** CORPO PRINCIPALE *************************** */
 /* ************************************************************************** */
 .container {
-    margin: auto;
-    width: 80%;
-    min-width: 900px;
-    height: 95%;
-    z-index: 1;
+  margin: auto;
+  width: 80%;
+  min-width: 900px;
+  height: 95%;
+  z-index: 1;
 }
 
 
 /* ***************************** COLONNA CONTATTI *************************** */
 .colonnaContatti {
     width: 35%;
+    height: 100%;
     border-right: 1px solid #D6D6D6;
     float: left;
 }
@@ -63,9 +67,9 @@ body {
 
 .listaContatti{
   width: 100%;
-  /* -70px altezza userProfile, - 80px altezza bannerStressante, - 50px altezz barraRicerca */
-  height: calc(100% - 70px - 80px - 50px);
-  height: 520px;
+  /* 200 viene da -70px altezza userProfile, - 80px altezza bannerStressante, - 50px altezz barraRicerca */
+  height: calc(100% - 200px);
+  /* height: 520px; */
   background: #fff;
   overflow-y: scroll;
 }
@@ -92,8 +96,8 @@ body {
 }
 
 .chatBoard{
-  /* il priom -70px è chatUser e il secondo è la dimensione dell'input */
-  height: calc(100% - 70px - 70px);
+  /*-70px è chatUser e il secondo -70 è la dimensione dell'input */
+  height: calc(100% - 140px);
   width: 100%;
   padding: 5% 10%;
   background-image: url(img/sfondoChat.jpg);
