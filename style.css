@@ -244,9 +244,93 @@ PER INDICARE CHE UN CONTATTO è CLICCATO */
   overflow-y: scroll;
 }
 
+.messaggio{
+  /* metto position relative per ancorarci le vv */
+  position: relative;
+  margin: 5px 0;
+  padding: 15px 15px 20px 15px;
+  min-width: 20%;
+  max-width: 60%;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.messaggio.inviato{
+  background: #D5F9BA;
+  float: right;
+  clear: both;
+}
+
+.messaggio i{
+  display: none;
+  font-size: 12px;
+}
+
+.messaggio:hover i{
+  display: inline-block;
+  color: #4dabf7;
+}
+
+.messaggio.ricevuto:hover i{
+  display: inline-block;
+  color: #B6B9BB;
+}
+
+.messaggio.ricevuto{
+  background: white;
+  float: left;
+  clear: both;
+}
+
+.orarioMessaggio{
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 10px;
+  color: #B6B9BB;
+}
+
 /* ****   INPUT ***** */
 .inputChat{
   background-color: #F3EEEA;
   width: 100%;
   height: 70px;
+}
+
+.emoj{
+  float: left;
+  width: 10%;
+  height: 100%;
+  line-height: 70px;
+  text-align: center;
+  font-size: 25px;
+  color: #6B7376;
+}
+
+.inputUtente{
+  float: left;
+  width: 80%;
+  height: 50px;
+  margin: 10px 0;
+}
+
+.inputUtente input{
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  border: 0;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: lighter;
+  color: rgba(183, 186, 187, 1);
+}
+
+.invia{
+  float: left;
+  width: 10%;
+  height: 100%;
+  line-height: 70px;
+  text-align: center;
+  font-size: 25px;
+  color: #6B7376;
 }
