@@ -36,4 +36,11 @@ $(document).ready(function(){
     $(".invia").html("<i class='fas fa-microphone'></i> ")
   }
   });
+
+  // $(".colonnaContatti, .chatUser, .opzioni, .chatBoard ").on({
+  // //quando clicco sul bottone do a ogni cella il background corrispondende mostrando le posizioni
+  // click: function(){
+  //   $(".invia").html("<i class='fas fa-microphone'></i> ")
+  // }
+  // });
 });
