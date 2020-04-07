@@ -271,15 +271,15 @@ PER INDICARE CHE UN CONTATTO è CLICCATO */
   color: #4dabf7;
 }
 
-.messaggio.ricevuto:hover i{
-  display: inline-block;
-  color: #B6B9BB;
-}
-
 .messaggio.ricevuto{
   background: white;
   float: left;
   clear: both;
+}
+
+.messaggio.ricevuto:hover i{
+  display: inline-block;
+  color: #B6B9BB;
 }
 
 .orarioMessaggio{
@@ -322,7 +322,7 @@ PER INDICARE CHE UN CONTATTO è CLICCATO */
   border-radius: 5px;
   font-size: 14px;
   font-weight: lighter;
-  color: rgba(183, 186, 187, 1);
+  color: black;
 }
 
 .invia{
