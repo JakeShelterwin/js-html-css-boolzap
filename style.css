@@ -1,0 +1,107 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ************************************************************************** */
+/* ***************************** ROBA GENERALE ****************************** */
+/* ************************************************************************** */
+body {
+  font-family: 'Lato', sans-serif;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  max-height: 100vh;
+  /* Gradiente dall'alto verso il basso */
+  background-image: linear-gradient(to bottom, #009688 15vh, #dddbd1 15vh, #d2dbdc 100%);
+}
+
+.clearfix{
+  display: table;
+  content: "";
+  clear: both;
+}
+
+/* ************************************************************************** */
+/* ***************************** CORPO PRINCIPALE *************************** */
+/* ************************************************************************** */
+.container {
+    margin: auto;
+    width: 80%;
+    min-width: 900px;
+    height: 95%;
+    z-index: 1;
+}
+
+
+/* ***************************** COLONNA CONTATTI *************************** */
+.colonnaContatti {
+    width: 35%;
+    border-right: 1px solid #D6D6D6;
+    float: left;
+}
+
+.userProfile {
+    width: 100%;
+    height: 70px;
+    background: #EAEAEA;
+}
+
+.bannerStressante{
+  display: flex;
+  width: 100%;
+  height: 80px;
+  background: #8EDAFC;
+}
+
+.barraRicerca{
+  width: 100%;
+  height: 50px;
+  background: #FAFAFA;
+}
+
+.listaContatti{
+  width: 100%;
+  /* -70px altezza userProfile, - 80px altezza bannerStressante, - 50px altezz barraRicerca */
+  height: calc(100% - 70px - 80px - 50px);
+  height: 520px;
+  background: #fff;
+  overflow-y: scroll;
+}
+
+.contatto{
+  display: flex;
+  cursor: pointer;
+  width: 100%;
+  height: 80px;
+  border-bottom: 1px solid #F5F5F5;
+}
+
+/* ***************************** COLONNA CHAT *************************** */
+.colonnaChat{
+  height: 100%;
+  width: 65%;
+  float: left;
+}
+
+.chatUser {
+  width: 100%;
+  height: 70px;
+  background: #EAEAEA;
+}
+
+.chatBoard{
+  /* il priom -70px è chatUser e il secondo è la dimensione dell'input */
+  height: calc(100% - 70px - 70px);
+  width: 100%;
+  padding: 5% 10%;
+  background-image: url(img/sfondoChat.jpg);
+  overflow-y: scroll;
+}
+
+.inputChat{
+  background-color: #F3EEEA;
+  width: 100%;
+  height: 70px;
+}
