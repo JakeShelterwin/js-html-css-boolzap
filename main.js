@@ -28,12 +28,17 @@ $(document).ready(function(){
     $(".inputUtente input").attr('placeholder', 'Scrivi un messaggio')
     //prendo dall'html il valore che l'utente ha inserito
     inputUtente=$(".inputUtente input").val();
-    //aggiungo con append (dunque senza sostituire eventuali elementi precedenti) l'input dell'utente con tutte le classi appropriate
+    //aggiungo con append (dunque senza sostituire eventuali elementi precedenti) l'input dell'utente con tutte le classi appropriate SE non è vuoto
+    if (inputUtente!==""){
     chat.append( '<div class="messaggio inviato"><p>'+ inputUtente +'</p><span class="orarioMessaggio">13:30 <i class="fas fa-check"></i><i class="fas fa-check"></i></span></div>' );
     //azzero il campo input
     inputUtente=$(".inputUtente input").val("");
     //ripristino l'icona del microfono
-    $(".invia").html("<i class='fas fa-microphone'></i> ")
+    $(".invia").html("<i class='fas fa-microphone'></i> ")}
+    //SE L'INPUT E' VUOTO MI LIMITO A RIPRISTINARE L'ICONA GIUSTA
+    else {
+      $(".invia").html("<i class='fas fa-microphone'></i> ")
+    }
   }
   });
 
