@@ -2,6 +2,9 @@
 // Milestone 1:
 // Replica della grafica con la possibilità di avere messaggi scritti dall’utente (verdi) e dall’interlocutore (bianco) assegnando due classi CSS diverse (quindi tutto statico);
 // Aggiunta di un messaggio: l’utente scrive un testo nella parte bassa e cliccando invia il testo viene aggiunto al thread sopra, come messaggio verde (quindi solo quello NON aggiungiamo dinamicamente anche quello bianco di risposta)
+// Milestone 2:
+// Risposta dall’interlocutore: ad ogni inserimento di un messaggio, l’utente riceverà un “ok” come risposta, che apparirà dopo 1 secondo.
+// Ricerca utenti: scrivendo qualcosa nell’input a sinistra, vengono visualizzati solo i contatti il cui nome contiene le lettere inserite (es, Marco, Matteo Martina -> Scrivo “mar” rimangono solo Marco e Martina)
 
 $(document).ready(function(){
 
@@ -67,6 +70,23 @@ $(document).ready(function(){
       inputUtente=$(".inputUtente input").val("");
       //ripristino l'icona del microfono
       $(".invia").html("<i class='fas fa-microphone'></i> ")
+
+      //mentre il mittende risponde indico in alto che lo sta facendo:
+      $(".statoENome span").html("Sta scrivendo...")
+
+      //AGGIUNTA RISPOSTA, deve trascorrere 1 secondo dalla comparsa della risposta
+      //quindi uso setTimeout e imposto 1000 secondi d'attesa
+      setTimeout(myFunction, 1000);
+        function myFunction(){
+        chat.append( '<div class="messaggio ricevuto"><p>'+ 'ok' +'</p><span class="orarioMessaggio">'+ time + ' <i class="fas fa-share"></i></span></div>' );
+
+        //APPENA INVIATO IL MESSAGGIO IL MITTENTE SI DISCONNETTE, QUINDI AGGIORNO IL SUO L'ULTIMO ACCESSO
+        $(".statoENome span").html("Ultimo accesso oggi alle " + time);
+
+        //NELLA LISTA DELLE CHAT INSERISCO L'ULTIMO MESSAGGIO AGGIORNATO per il contatto in cui mi trovo
+        $(".contatto.cliccato .ultimoMesChat").html("ok");
+
+      }
     }
     //SE L'INPUT E' VUOTO MI LIMITO A RIPRISTINARE L'ICONA GIUSTA
     else {
