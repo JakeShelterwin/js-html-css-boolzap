@@ -53,12 +53,14 @@ main {
   height: 50px;
   margin: auto 0 auto 10px;
   border-radius: 100%;
+  cursor: pointer;
 }
 
 .opzioni{
   display: flex;
   height: 100%;
   margin-right: 15px;
+  cursor: pointer;
 }
 
 .opzioni i{
@@ -231,6 +233,7 @@ PER INDICARE CHE UN CONTATTO è CLICCATO */
 .datiMittente{
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .statoENome{

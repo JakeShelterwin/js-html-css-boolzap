@@ -10,87 +10,111 @@ $(document).ready(function(){
 
 
   // dichiarazione e inizializzazione variabili che utilizzerò
-  var inputUtente, chat;
-  chat=$(".chatBoard");
+  var inputUtente, ricercaUtente;
+  var chat = $(".chatBoard");
+  //recupero l'ora per assegnarla ai messaggi e all'ultimo accesso
+  var data = new Date();
+  var time = data.getHours() + ":" + data.getMinutes();
 
-  //gestisco cosa succede quando faccio click sull'input della chat
+
+  //gestisco cosa succede quando faccio focus e blur sull'input della chat
   $(".inputUtente input").on({
-  //quando clicco sul bottone do a ogni cella il background corrispondende mostrando le posizioni
-  focus: function(){
-    //al focus, sostituisco l'icona del microfono con quella dell'aeroplanino
-    $(".invia").html("<i class='fas fa-paper-plane'></i> ")
-  },
-
-  //test per far riapparire l'icona del microfono quando tolgo il focus ma non funziiona
-  //nel modo che volgio io
-  // blur: function(){
-  //   $(".invia").html("<i class='fas fa-microphone'></i> ")
-  // }
-
+    focus: function(){
+      //al focus, sostituisco l'icona del microfono con quella dell'aeroplanino
+      $(".invia i").removeClass('fa-microphone').addClass('fa-paper-plane');
+    },
+    //quando tolgo il focus ripristino l'icona del microfono
+    blur: function(){
+      $('.invia i').removeClass('fa-paper-plane').addClass('fa-microphone');
+    }
   });
+
 
   //gestisco cosa succede quando faccio click sul div invia
   $(".invia").on({
-  //quando clicco sul bottone do a ogni cella il background corrispondende mostrando le posizioni
-  click: compariBolla
+    //quando clicco sul div che ha classe "invia" eseguo la funzione inviaMessaggio
+    click: inviaMessaggio
   });
 
-  //gestisco cosa succede quando premo il tasto invia sulla selezione .inputUtente input
+  //gestisco cosa succede quando premo il tasto invio sulla selezione .inputUtente input
   $(".inputUtente input").keypress(function(e) {
     // 13 sta a significare il tasto invio, è witch resistuisce il tasto pigiato
     //For key or mouse events, "which" property indicates the specific key or button that was pressed.
     if (e.which == 13) {
-      compariBolla();
-      $(".invia").html("<i class='fas fa-paper-plane'></i> ")
+      inviaMessaggio();
+      $(".invia i").removeClass('fa-microphone').addClass('fa-paper-plane');
     }
   });
 
-  //Con questo dico che quando clicco ovunque nel container tranne che nell'input,
-  // l'icona deve tornare quella del microfono
-  $(".colonnaContatti, .chatUser, .opzioni, .chatBoard, .emoj").on({
-  //quando clicco sul bottone do a ogni cella il background corrispondende mostrando le posizioni
-  click: function(){
-    $(".invia").html("<i class='fas fa-microphone'></i> ");
-  }
+  //gestisco cosa succede quando cerco qualcosa nella barra di ricerca
+  $(".barraRicerca input").on({
+    //gestisco l'evento alla digitazione e richiamo la funziona cercaContatto
+    keyup : cercaContatto
   });
 
-  //questa funzione inserisce l'input dell'utente ottenuto sopra all'nterno della nuvoletta
-  //di whatsapp con tutte le classi associate
-  function compariBolla (){
+
+  //questa funzione inserisce l'input dell'utente all'interno della nuvoletta di whatsapp
+  // con tutte le classi associate, genera la risposta dopo 1 secondo e aggiusta l'interfaccia
+  // di conseguenza (stato online, ultimo messaggio nella lista delle chat: aggionato)
+  function inviaMessaggio (){
     //prendo dall'html il valore che l'utente ha inserito
     inputUtente=$(".inputUtente input").val();
     //SE l'input dell'utente non è vuoto
     if (inputUtente!==""){
-      //recupero l'ora per assegnarla al messaggio inviato
-      var data = new Date();
-      var time = data.getHours() + ":" + data.getMinutes()
       //aggiungo con append (dunque senza sostituire eventuali elementi precedenti) l'input dell'utente con tutte le classi appropriate
       chat.append( '<div class="messaggio inviato"><p>'+ inputUtente +'</p><span class="orarioMessaggio">'+ time + '<i class="fas fa-check"></i><i class="fas fa-check"></i></span></div>' );
       //azzero il campo input, così che riprenda il valore di placeholder
       inputUtente=$(".inputUtente input").val("");
       //ripristino l'icona del microfono
-      $(".invia").html("<i class='fas fa-microphone'></i> ")
+      $('.invia i').removeClass('fa-paper-plane').addClass('fa-microphone');
 
       //mentre il mittende risponde indico in alto che lo sta facendo:
-      $(".statoENome span").html("Sta scrivendo...")
+      $(".statoENome span").html("Sta scrivendo...");
 
       //AGGIUNTA RISPOSTA, deve trascorrere 1 secondo dalla comparsa della risposta
       //quindi uso setTimeout e imposto 1000 secondi d'attesa
-      setTimeout(myFunction, 1000);
-        function myFunction(){
-        chat.append( '<div class="messaggio ricevuto"><p>'+ 'ok' +'</p><span class="orarioMessaggio">'+ time + ' <i class="fas fa-share"></i></span></div>' );
-
-        //APPENA INVIATO IL MESSAGGIO IL MITTENTE SI DISCONNETTE, QUINDI AGGIORNO IL SUO L'ULTIMO ACCESSO
-        $(".statoENome span").html("Ultimo accesso oggi alle " + time);
-
-        //NELLA LISTA DELLE CHAT INSERISCO L'ULTIMO MESSAGGIO AGGIORNATO per il contatto in cui mi trovo
-        $(".contatto.cliccato .ultimoMesChat").html("ok");
-
-      }
+      setTimeout(riceviMessaggio, 1000);
     }
     //SE L'INPUT E' VUOTO MI LIMITO A RIPRISTINARE L'ICONA GIUSTA
     else {
-      $(".invia").html("<i class='fas fa-microphone'></i> ")
+      $('.invia i').removeClass('fa-paper-plane').addClass('fa-microphone');
+    }
+  }
+
+  function riceviMessaggio(){
+    chat.append( '<div class="messaggio ricevuto"><p>'+ 'ok' +'</p><span class="orarioMessaggio">'+ time + ' <i class="fas fa-share"></i></span></div>' );
+
+    //APPENA INVIATO IL MESSAGGIO IL MITTENTE SI DISCONNETTE, QUINDI AGGIORNO IL SUO L'ULTIMO ACCESSO
+    //questo solo per l'utente che mi ha risposto grazie a
+    $(".statoENome span").html("Ultimo accesso oggi alle " + time);
+
+    //NELLA LISTA DELLE CHAT INSERISCO L'ULTIMO MESSAGGIO AGGIORNATO per il contatto in cui mi trovo
+    $(".contatto.cliccato .ultimoMesChat").html("ok");
+
+  }
+
+  //QUESTA FUNZIONE A PARTIRE DALL'INPUT DELL'UTENTE FILTRA I CONTATTI CHE MATCHANO LA RICERCA
+  function cercaContatto(){
+    //Salvo la ricerca dell'utente e per evitare problemi metto tutto in lowercase
+    ricercaUtente=$(".barraRicerca input").val().toLowerCase();
+    if (ricercaUtente!==""){
+      $(".contatto").each(function() {
+        //.find( selector ) Get the descendants of each element in the current set of matched elements, filtered by a selector, jQuery object, or element.
+        // .find(selettore) trova i discendenti (col selettore) di ciascun elemento individuato
+        //includes è caseSensitive allora metto i nomi tutti in lowerCase
+        var nomeOriginario=$(this).find(".nomeContatto").text().toLowerCase();
+        // stringa1.includes(stringa2) --> rende true se stringa2 è contenuta in stringa1
+        if ((nomeOriginario).includes(ricercaUtente)) {
+          $(this).show();
+        }
+        else{
+          $(this).hide();
+        }
+      });
+    }
+    //SE L'INPUT E' VUOTO, posso mostrare tutto
+    else {
+      $(".contatto").show();
     }
   }
 
