@@ -2,9 +2,15 @@
 // Milestone 1:
 // Replica della grafica con la possibilità di avere messaggi scritti dall’utente (verdi) e dall’interlocutore (bianco) assegnando due classi CSS diverse (quindi tutto statico);
 // Aggiunta di un messaggio: l’utente scrive un testo nella parte bassa e cliccando invia il testo viene aggiunto al thread sopra, come messaggio verde (quindi solo quello NON aggiungiamo dinamicamente anche quello bianco di risposta)
+
 // Milestone 2:
 // Risposta dall’interlocutore: ad ogni inserimento di un messaggio, l’utente riceverà un “ok” come risposta, che apparirà dopo 1 secondo.
 // Ricerca utenti: scrivendo qualcosa nell’input a sinistra, vengono visualizzati solo i contatti il cui nome contiene le lettere inserite (es, Marco, Matteo Martina -> Scrivo “mar” rimangono solo Marco e Martina)
+
+// Milestone 3:
+// Click sul contatto mostra la conversazione del contatto cliccato,
+// è possibile inserire nuovi messaggi per ogni conversazione
+// Cancella messaggio: cliccando sul messaggio appare un menu a tendina che permette di cancellare il messaggio selezionato
 
 $(document).ready(function(){
 
@@ -56,6 +62,31 @@ $(document).ready(function(){
   //quando seleziono un contatto mostro la chat relativa
   contattoSelezionato.click(mostraChatGiusta);
 
+  //gestisco cosa succede quando clicco un messaggio:
+  //in particolare faccio comparire un sotto-menu per l'eliminazione
+  $('.chatBoard').on("click", ".messaggio",
+     function () {
+       //se .menuAlClick ha la classe hide e quindi è nascosto:
+      if ($(this).children(".menuAlClick").hasClass("hide")){
+        //Se ci sono altri .menuAlClick visibili allora li nascondo
+        $(".menuAlClick").addClass("hide");
+        //e poi rendo visibile quello su cui ho cliccato
+        $(this).children(".menuAlClick").removeClass("hide");
+      } else {
+        //Altrimenti nascondo tutti i .menuAlClick visibili
+        $(".menuAlClick").addClass("hide");
+      }
+     }
+
+  );
+
+  //gestisco cosa succede quando clicco sul menu che ho fatto comparire (.menuAlClick):
+  // nascondo il padre del .menuAlClick cliccato
+  $('.chatBoard').on("click", ".menuAlClick",
+    function(){
+      $(this).parent().hide();
+    }
+  )
 
   //questa funzione inserisce l'input dell'utente all'interno della nuvoletta di whatsapp
   // con tutte le classi associate, genera la risposta dopo 1 secondo e aggiusta l'interfaccia
@@ -66,7 +97,7 @@ $(document).ready(function(){
     //SE l'input dell'utente non è vuoto
     if (inputUtente!==""){
       //aggiungo con append (dunque senza sostituire eventuali elementi precedenti) l'input dell'utente con tutte le classi appropriate alla chat che è attiva
-      $(".chatBoard.active").append( '<div class="messaggio inviato"><p>'+ inputUtente +'</p><span class="orarioMessaggio">'+ time + '<i class="fas fa-check"></i><i class="fas fa-check"></i></span></div>' );
+      $(".chatBoard.active").append( '<div class="messaggio inviato"><p>'+ inputUtente +'</p><span class="orarioMessaggio">'+ time + '<i class="fas fa-check"></i><i class="fas fa-check"></i></span><div class="menuAlClick hide"><span>Cancella Messaggio</span></div></div>' );
       //azzero il campo input, così che riprenda il valore di placeholder
       inputUtente=$(".inputUtente input").val("");
       //ripristino l'icona del microfono
@@ -86,7 +117,7 @@ $(document).ready(function(){
   }
 
   function riceviMessaggio(){
-    $(".chatBoard.active").append( '<div class="messaggio ricevuto"><p>'+ 'ok' +'</p><span class="orarioMessaggio">'+ time + ' <i class="fas fa-share"></i></span></div>' );
+    $(".chatBoard.active").append( '<div class="messaggio ricevuto"><p>'+ 'ok' +'</p><span class="orarioMessaggio">'+ time + ' <i class="fas fa-share"></i></span><div class="menuAlClick hide"><span>Cancella Messaggio</span></div></div> ' );
 
     //APPENA INVIATO IL MESSAGGIO IL MITTENTE SI DISCONNETTE, QUINDI AGGIORNO IL SUO L'ULTIMO ACCESSO
     //questo solo per l'utente che mi ha risposto grazie a
@@ -124,12 +155,18 @@ $(document).ready(function(){
 
   //quando faccio click sull'elemento lo seleziono
   function selezionaContatto(elemento){
+    //deleziono tutte le selezioni precedenti
     contattoSelezionato.removeClass("cliccato");
+    //seleziono quello si cui faccio click
     $(elemento).addClass("cliccato");
   }
 
   function mostraChatGiusta(){
+    // richiamo subito la funzione create sopra
     selezionaContatto(this);
+    //itero fra tutte le chat per mostrare per ogni contatto la chat corrispondente
+    //uso data attribute, se contatto e chat hanno lo stesso data attribute allora
+    //sono fatti "L'uno per l'altra"
     chat.each(function() {
       if ( $(".contatto.cliccato").data("conversazione")==$(this).data("conversazione") ) {
         // debug console.log($(this).data());
