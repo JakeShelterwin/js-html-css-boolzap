@@ -16,13 +16,19 @@ $(document).ready(function(){
 
 
   // dichiarazione e inizializzazione variabili che utilizzerò
-  var inputUtente, ricercaUtente;
+  var inputUtente, ricercaUtente, time;
   var chat = $(".chatBoard");
   var contattoSelezionato = $(".contatto");
   //recupero l'ora per assegnarla ai messaggi e all'ultimo accesso
   var data = new Date();
-  var time = data.getHours() + ":" + data.getMinutes();
 
+  //gestisco il fatto che getMinutes non mette davanti lo 0 ai minuti <10 e allora 20:03
+  // verrebbe scritto 20:3... con questo controllo non avviene;
+  if ( data.getMinutes()<10){
+    time = data.getHours() + ":0" + data.getMinutes();
+  } else{
+    time = data.getHours() + ":" + data.getMinutes();
+  }
 
   //gestisco cosa succede quando faccio focus e blur sull'input della chat
   $(".inputUtente input").on({
@@ -86,7 +92,7 @@ $(document).ready(function(){
     function(){
       $(this).parent().hide();
     }
-  )
+  );
 
   //questa funzione inserisce l'input dell'utente all'interno della nuvoletta di whatsapp
   // con tutte le classi associate, genera la risposta dopo 1 secondo e aggiusta l'interfaccia
