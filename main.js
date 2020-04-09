@@ -12,6 +12,7 @@ $(document).ready(function(){
   // dichiarazione e inizializzazione variabili che utilizzerò
   var inputUtente, ricercaUtente;
   var chat = $(".chatBoard");
+  var contattoSelezionato = $(".contatto");
   //recupero l'ora per assegnarla ai messaggi e all'ultimo accesso
   var data = new Date();
   var time = data.getHours() + ":" + data.getMinutes();
@@ -52,6 +53,9 @@ $(document).ready(function(){
     keyup : cercaContatto
   });
 
+  //quando seleziono un contatto mostro la chat relativa
+  contattoSelezionato.click(mostraChatGiusta);
+
 
   //questa funzione inserisce l'input dell'utente all'interno della nuvoletta di whatsapp
   // con tutte le classi associate, genera la risposta dopo 1 secondo e aggiusta l'interfaccia
@@ -61,8 +65,8 @@ $(document).ready(function(){
     inputUtente=$(".inputUtente input").val();
     //SE l'input dell'utente non è vuoto
     if (inputUtente!==""){
-      //aggiungo con append (dunque senza sostituire eventuali elementi precedenti) l'input dell'utente con tutte le classi appropriate
-      chat.append( '<div class="messaggio inviato"><p>'+ inputUtente +'</p><span class="orarioMessaggio">'+ time + '<i class="fas fa-check"></i><i class="fas fa-check"></i></span></div>' );
+      //aggiungo con append (dunque senza sostituire eventuali elementi precedenti) l'input dell'utente con tutte le classi appropriate alla chat che è attiva
+      $(".chatBoard.active").append( '<div class="messaggio inviato"><p>'+ inputUtente +'</p><span class="orarioMessaggio">'+ time + '<i class="fas fa-check"></i><i class="fas fa-check"></i></span></div>' );
       //azzero il campo input, così che riprenda il valore di placeholder
       inputUtente=$(".inputUtente input").val("");
       //ripristino l'icona del microfono
@@ -82,7 +86,7 @@ $(document).ready(function(){
   }
 
   function riceviMessaggio(){
-    chat.append( '<div class="messaggio ricevuto"><p>'+ 'ok' +'</p><span class="orarioMessaggio">'+ time + ' <i class="fas fa-share"></i></span></div>' );
+    $(".chatBoard.active").append( '<div class="messaggio ricevuto"><p>'+ 'ok' +'</p><span class="orarioMessaggio">'+ time + ' <i class="fas fa-share"></i></span></div>' );
 
     //APPENA INVIATO IL MESSAGGIO IL MITTENTE SI DISCONNETTE, QUINDI AGGIORNO IL SUO L'ULTIMO ACCESSO
     //questo solo per l'utente che mi ha risposto grazie a
@@ -98,7 +102,7 @@ $(document).ready(function(){
     //Salvo la ricerca dell'utente e per evitare problemi metto tutto in lowercase
     ricercaUtente=$(".barraRicerca input").val().toLowerCase();
     if (ricercaUtente!==""){
-      $(".contatto").each(function() {
+      contattoSelezionato.each(function() {
         //.find( selector ) Get the descendants of each element in the current set of matched elements, filtered by a selector, jQuery object, or element.
         // .find(selettore) trova i discendenti (col selettore) di ciascun elemento individuato
         //includes è caseSensitive allora metto i nomi tutti in lowerCase
@@ -114,8 +118,28 @@ $(document).ready(function(){
     }
     //SE L'INPUT E' VUOTO, posso mostrare tutto
     else {
-      $(".contatto").show();
+      contattoSelezionato.show();
     }
+  }
+
+  //quando faccio click sull'elemento lo seleziono
+  function selezionaContatto(elemento){
+    contattoSelezionato.removeClass("cliccato");
+    $(elemento).addClass("cliccato");
+  }
+
+  function mostraChatGiusta(){
+    selezionaContatto(this);
+    chat.each(function() {
+      if ( $(".contatto.cliccato").data("conversazione")==$(this).data("conversazione") ) {
+        // debug console.log($(this).data());
+        $(this).addClass("active").removeClass("hide");
+        // debug console.log("FUNZIONA");
+      } else{
+        $(this).addClass("hide").removeClass("active");
+      }
+    });
+
   }
 
 });

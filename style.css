@@ -222,6 +222,14 @@ PER INDICARE CHE UN CONTATTO è CLICCATO */
   background-color: #E9EBEB;
 }
 
+.active{
+  display: block;
+}
+
+.hide{
+  display: none;
+}
+
 /* ***************************** COLONNA CHAT *************************** */
 .colonnaChat{
   height: 100%;
@@ -247,9 +255,14 @@ PER INDICARE CHE UN CONTATTO è CLICCATO */
 }
 
 /* ****    CHAT ***** */
-.chatBoard{
+.containerConversazioni{
   /*-70px è chatUser e il secondo -70 è la dimensione dell'input */
   height: calc(100% - 140px);
+  width: 100%;
+}
+
+.chatBoard{
+  height: 100%;
   width: 100%;
   padding: 5% 10%;
   background-image: url(img/sfondoChat.jpg);

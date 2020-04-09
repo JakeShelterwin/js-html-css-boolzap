@@ -32,7 +32,7 @@
               <input type="text" name="cerca" value="" placeholder="Cerca o inizia una nuova chat">
             </div>
             <div class="listaContatti">
-              <div class="contatto cliccato">
+              <div class="contatto cliccato" data-conversazione="0">
                 <div class="logoContatto">
                   <img src="img/avatar1.jpg" alt="">
                 </div>
@@ -42,7 +42,7 @@
                   <p class="ultimoMesChat">Non poteva essere altrimenti</p>
                 </div>
               </div>
-              <div class="contatto">
+              <div class="contatto" data-conversazione="1">
                 <div class="logoContatto">
                   <img src="img/avatar2.jpg" alt="">
                 </div>
@@ -52,7 +52,7 @@
                   <p class="ultimoMesChat">Non poteva essere altrimenti</p>
                 </div>
               </div>
-              <div class="contatto">
+              <div class="contatto" data-conversazione="2">
                 <div class="logoContatto">
                   <img src="img/avatar3.jpg" alt="">
                 </div>
@@ -62,7 +62,7 @@
                   <p class="ultimoMesChat">Non poteva essere altrimenti</p>
                 </div>
               </div>
-              <div class="contatto">
+              <div class="contatto" data-conversazione="3">
                 <div class="logoContatto">
                   <img src="img/avatar4.jpg" alt="">
                 </div>
@@ -72,7 +72,7 @@
                   <p class="ultimoMesChat">Non poteva essere altrimenti</p>
                 </div>
               </div>
-              <div class="contatto">
+              <div class="contatto" data-conversazione="4">
                 <div class="logoContatto">
                   <img src="img/avatar5.jpg" alt="">
                 </div>
@@ -82,7 +82,7 @@
                   <p class="ultimoMesChat">Non poteva essere altrimenti</p>
                 </div>
               </div>
-              <div class="contatto">
+              <div class="contatto" data-conversazione="5">
                 <div class="logoContatto">
                   <img src="img/avatar6.jpg" alt="">
                 </div>
@@ -92,7 +92,7 @@
                   <p class="ultimoMesChat">Non poteva essere altrimenti</p>
                 </div>
               </div>
-              <div class="contatto">
+              <div class="contatto" data-conversazione="6">
                 <div class="logoContatto">
                   <img src="img/avatar7.jpg" alt="">
                 </div>
@@ -102,7 +102,7 @@
                   <p class="ultimoMesChat">Non poteva essere altrimenti</p>
                 </div>
               </div>
-              <div class="contatto">
+              <div class="contatto" data-conversazione="7">
                 <div class="logoContatto">
                   <img src="img/avatar8.jpg" alt="">
                 </div>
@@ -131,20 +131,120 @@
                 <i class="fas fa-ellipsis-v"></i>
               </div>
             </div>
-            <div class="chatBoard clearfix">
-              <div class="messaggio inviato">
-                <p>Ciao come stai?</p>
-                <span class="orarioMessaggio">13:25 <i class="fas fa-check"></i><i class="fas fa-check"></i></span>
-              </div>
-              <div class="messaggio ricevuto">
-                <p>Bene, te?</p>
-                <span class="orarioMessaggio">14:10 <i class="fas fa-share"></i></span>
-              </div>
-              <div class="messaggio inviato">
-                <p>Non mi lamento </p>
-                <span class="orarioMessaggio">14:13 <i class="fas fa-check"></i><i class="fas fa-check"></i></span>
-              </div>
 
+            <div class="containerConversazioni">
+              <div class="chatBoard clearfix active" data-conversazione="0">
+                <div class="messaggio inviato">
+                  <p>Ciao come stai?</p>
+                  <span class="orarioMessaggio">13:25 <i class="fas fa-check"></i><i class="fas fa-check"></i></span>
+                </div>
+                <div class="messaggio ricevuto">
+                  <p>Bene, te?</p>
+                  <span class="orarioMessaggio">14:10 <i class="fas fa-share"></i></span>
+                </div>
+                <div class="messaggio inviato">
+                  <p>Non mi lamento </p>
+                  <span class="orarioMessaggio">14:13 <i class="fas fa-check"></i><i class="fas fa-check"></i></span>
+                </div>
+              </div>
+              <div class="chatBoard clearfix hide" data-conversazione="1">
+                <div class="messaggio inviato">
+                  <p>Ciao come stai?</p>
+                  <span class="orarioMessaggio">13:25 <i class="fas fa-check"></i><i class="fas fa-check"></i></span>
+                </div>
+                <div class="messaggio ricevuto">
+                  <p>Bene, te?</p>
+                  <span class="orarioMessaggio">14:10 <i class="fas fa-share"></i></span>
+                </div>
+                <div class="messaggio inviato">
+                  <p>Non mi lamento </p>
+                  <span class="orarioMessaggio">14:13 <i class="fas fa-check"></i><i class="fas fa-check"></i></span>
+                </div>
+              </div>
+              <div class="chatBoard clearfix hide" data-conversazione="2">
+                <div class="messaggio inviato">
+                  <p>Ciao come stai?</p>
+                  <span class="orarioMessaggio">13:25 <i class="fas fa-check"></i><i class="fas fa-check"></i></span>
+                </div>
+                <div class="messaggio ricevuto">
+                  <p>Bene, te?</p>
+                  <span class="orarioMessaggio">14:10 <i class="fas fa-share"></i></span>
+                </div>
+                <div class="messaggio inviato">
+                  <p>Non mi lamento </p>
+                  <span class="orarioMessaggio">14:13 <i class="fas fa-check"></i><i class="fas fa-check"></i></span>
+                </div>
+              </div>
+              <div class="chatBoard clearfix hide" data-conversazione="3">
+                <div class="messaggio inviato">
+                  <p>Ciao come stai?</p>
+                  <span class="orarioMessaggio">13:25 <i class="fas fa-check"></i><i class="fas fa-check"></i></span>
+                </div>
+                <div class="messaggio ricevuto">
+                  <p>Bene, te?</p>
+                  <span class="orarioMessaggio">14:10 <i class="fas fa-share"></i></span>
+                </div>
+                <div class="messaggio inviato">
+                  <p>Non mi lamento </p>
+                  <span class="orarioMessaggio">14:13 <i class="fas fa-check"></i><i class="fas fa-check"></i></span>
+                </div>
+              </div>
+              <div class="chatBoard clearfix hide" data-conversazione="4">
+                <div class="messaggio inviato">
+                  <p>Ciao come stai?</p>
+                  <span class="orarioMessaggio">13:25 <i class="fas fa-check"></i><i class="fas fa-check"></i></span>
+                </div>
+                <div class="messaggio ricevuto">
+                  <p>Bene, te?</p>
+                  <span class="orarioMessaggio">14:10 <i class="fas fa-share"></i></span>
+                </div>
+                <div class="messaggio inviato">
+                  <p>Non mi lamento </p>
+                  <span class="orarioMessaggio">14:13 <i class="fas fa-check"></i><i class="fas fa-check"></i></span>
+                </div>
+              </div>
+              <div class="chatBoard clearfix hide" data-conversazione="5">
+                <div class="messaggio inviato">
+                  <p>Ciao come stai?</p>
+                  <span class="orarioMessaggio">13:25 <i class="fas fa-check"></i><i class="fas fa-check"></i></span>
+                </div>
+                <div class="messaggio ricevuto">
+                  <p>Bene, te?</p>
+                  <span class="orarioMessaggio">14:10 <i class="fas fa-share"></i></span>
+                </div>
+                <div class="messaggio inviato">
+                  <p>Non mi lamento </p>
+                  <span class="orarioMessaggio">14:13 <i class="fas fa-check"></i><i class="fas fa-check"></i></span>
+                </div>
+              </div>
+              <div class="chatBoard clearfix hide" data-conversazione="6">
+                <div class="messaggio inviato">
+                  <p>Ciao come stai?</p>
+                  <span class="orarioMessaggio">13:25 <i class="fas fa-check"></i><i class="fas fa-check"></i></span>
+                </div>
+                <div class="messaggio ricevuto">
+                  <p>Bene, te?</p>
+                  <span class="orarioMessaggio">14:10 <i class="fas fa-share"></i></span>
+                </div>
+                <div class="messaggio inviato">
+                  <p>Non mi lamento </p>
+                  <span class="orarioMessaggio">14:13 <i class="fas fa-check"></i><i class="fas fa-check"></i></span>
+                </div>
+              </div>
+              <div class="chatBoard clearfix hide" data-conversazione="7">
+                <div class="messaggio inviato">
+                  <p>Ciao come stai?</p>
+                  <span class="orarioMessaggio">13:25 <i class="fas fa-check"></i><i class="fas fa-check"></i></span>
+                </div>
+                <div class="messaggio ricevuto">
+                  <p>Bene, te?</p>
+                  <span class="orarioMessaggio">14:10 <i class="fas fa-share"></i></span>
+                </div>
+                <div class="messaggio inviato">
+                  <p>Non mi lamento </p>
+                  <span class="orarioMessaggio">14:13 <i class="fas fa-check"></i><i class="fas fa-check"></i></span>
+                </div>
+              </div>
             </div>
 
             <div class="inputChat clearfix">
