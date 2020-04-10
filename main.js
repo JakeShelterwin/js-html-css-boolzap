@@ -70,6 +70,8 @@ $(document).ready(function(){
 
   //gestisco cosa succede quando clicco un messaggio:
   //in particolare faccio comparire un sotto-menu per l'eliminazione
+  // uso event delegation: https://learn.jquery.com/events/event-delegation/
+  // per evitare problemi con messaggi generati dopo il caricamento di questo .on
   $('.chatBoard').on("click", ".messaggio",
      function () {
        //se .menuAlClick ha la classe hide e quindi è nascosto:
@@ -88,6 +90,8 @@ $(document).ready(function(){
 
   //gestisco cosa succede quando clicco sul menu che ho fatto comparire (.menuAlClick):
   // nascondo il padre del .menuAlClick cliccato
+  // uso event delegation: https://learn.jquery.com/events/event-delegation/
+  // per evitare problemi con messaggi generati dopo il caricamento di questo .on
   $('.chatBoard').on("click", ".menuAlClick",
     function(){
       $(this).parent().hide();
@@ -123,14 +127,16 @@ $(document).ready(function(){
   }
 
   function riceviMessaggio(){
-    $(".chatBoard.active").append( '<div class="messaggio ricevuto"><p>'+ 'ok' +'</p><span class="orarioMessaggio">'+ time + ' <i class="fas fa-share"></i></span><div class="menuAlClick hide"><span>Cancella Messaggio</span></div></div> ' );
+    $(".chatBoard.active").append( '<div class="messaggio ricevuto"><p>'+ 'Ok!' +'</p><span class="orarioMessaggio">'+ time + ' <i class="fas fa-share"></i></span><div class="menuAlClick hide"><span>Cancella Messaggio</span></div></div> ' );
 
     //APPENA INVIATO IL MESSAGGIO IL MITTENTE SI DISCONNETTE, QUINDI AGGIORNO IL SUO L'ULTIMO ACCESSO
-    //questo solo per l'utente che mi ha risposto grazie a
+    //questo solo per l'utente che mi ha risposto
     $(".statoENome span").html("Ultimo accesso oggi alle " + time);
 
     //NELLA LISTA DELLE CHAT INSERISCO L'ULTIMO MESSAGGIO AGGIORNATO per il contatto in cui mi trovo
-    $(".contatto.cliccato .ultimoMesChat").html("ok");
+    $(".contatto.cliccato .ultimoMesChat").html("Ok!");
+    //E aggiorno l'orario mostrato con quello dell'ultimo ACCESSO
+    $(".contatto.cliccato .ultimoAccessoContatto").html(time);
 
   }
 
@@ -168,8 +174,21 @@ $(document).ready(function(){
   }
 
   function mostraChatGiusta(){
-    // richiamo subito la funzione create sopra
+    // richiamo subito la funzione creata sopra
     selezionaContatto(this);
+
+    //METTO IL NOME e L'IMMAGINE DI PROFILO e il l'ultimo accesso CORRETTI per la chat selezionata
+    //immagine
+    var avatarContattoCliccato = $(".contatto.cliccato img").attr('src');
+    $(".datiMittente img").attr('src', avatarContattoCliccato);
+    //nome
+    var nomeContattoCliccato = $(".contatto.cliccato").find(".nomeContatto").text();
+    $('.statoENome p').text(nomeContattoCliccato);
+    //ultimo accesso
+    var ultimoAccessoContattoCliccato = $(".contatto.cliccato").find(".ultimoAccessoContatto").text();
+    console.log(ultimoAccessoContattoCliccato);
+    $('.statoENome span').text("Ultimo accesso oggi alle " + ultimoAccessoContattoCliccato);
+
     //itero fra tutte le chat per mostrare per ogni contatto la chat corrispondente
     //uso data attribute, se contatto e chat hanno lo stesso data attribute allora
     //sono fatti "L'uno per l'altra"
