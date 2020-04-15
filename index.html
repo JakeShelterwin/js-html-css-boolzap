@@ -297,8 +297,18 @@
         </div>
       </main>
 
+      <script class="gestioneMessaggi" type="text/x-handlebars-template">
+        <div class="messaggio {{classeMessaggio}}">
+          <p>{{testoMessaggio}}</p>
+          <span class="orarioMessaggio">{{orarioMessaggio}}<i class="fas fa-share"></i></span>
+          <div class="menuAlClick hide">
+            <span>Cancella Messaggio</span>
+          </div>
+        </div>
+      </script>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="main.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+      <script src="main.js"></script>
     </body>
 </html>
