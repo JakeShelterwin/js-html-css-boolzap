@@ -20,7 +20,10 @@ $(document).ready(function(){
   var chat = $(".chatBoard");
   var contattoSelezionato = $(".contatto");
   //GESTIONE Handlebars
+  //seleziono lo script in html
   var fonte = $(".gestioneMessaggi").html();
+  //grazie a compile dico al codice di andarsi a cercare {{}} così che posso
+  //sostituirli con l'elemento che voglio
   var modelloMessaggio = Handlebars.compile(fonte);
 
   //recupero l'ora per assegnarla ai messaggi e all'ultimo accesso
@@ -111,8 +114,11 @@ $(document).ready(function(){
     inputUtente=$(".inputUtente input").val();
 
     //GESTIONE HANDLEBARS
-    var oggettoMessaggi = {"classeMessaggio": "inviato", "testoMessaggio": inputUtente, "orarioMessaggio": time}
-    var sostituisceInHTMLMessaggioCorrispondente = modelloMessaggio(oggettoMessaggi);
+    //creo un oggetto, ciascun elemento ha la stessa designazione che gli ho dato all'interno delle
+    // {{}} che sono nello script in HTML
+    var oggettoMessaggioInviato = {"classeMessaggio": "inviato", "testoMessaggio": inputUtente, "orarioMessaggio": time}
+    //modelloMessagio ho impostato che sia Handlebars.compile(fonte);
+    var sostituisceInHTMLMessaggioCorrispondente = modelloMessaggio(oggettoMessaggioInviato);
 
     //SE l'input dell'utente non è vuoto
     if (inputUtente!==""){
@@ -138,8 +144,12 @@ $(document).ready(function(){
 
   function riceviMessaggio(){
     //GESTIONE HANDLEBARS
-    var oggettoMessaggi = {"classeMessaggio": "ricevuto", "testoMessaggio": "Ok!", "orarioMessaggio": time}
-    var sostituisceInHTMLMessaggioCorrispondente = modelloMessaggio(oggettoMessaggi);
+    //creo un oggetto, ciascun elemento ha la stessa designazione che gli ho dato all'interno delle
+    // {{}} che sono nello script in HTML
+    var oggettoMessaggioRicevuto = {"classeMessaggio": "ricevuto", "testoMessaggio": "Ok!", "orarioMessaggio": time}
+    //modelloMessagio ho impostato che sia Handlebars.compile(fonte);
+    var sostituisceInHTMLMessaggioCorrispondente = modelloMessaggio(oggettoMessaggioRicevuto);
+
     $(".chatBoard.active").append(sostituisceInHTMLMessaggioCorrispondente);
 
     //APPENA INVIATO IL MESSAGGIO IL MITTENTE SI DISCONNETTE, QUINDI AGGIORNO IL SUO L'ULTIMO ACCESSO
